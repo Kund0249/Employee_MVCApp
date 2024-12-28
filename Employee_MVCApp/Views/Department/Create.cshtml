@@ -1,0 +1,45 @@
+﻿@model Employee_MVCApp.Models.DepartmentModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <form method="post">
+        <div>
+            <table>
+                <tr>
+                    <th>Department Code : </th>
+                    <td>
+                        @*@Html.TextBox("DepartmentCode")*@
+                        @Html.TextBoxFor(x => x.DepartmentCode)
+                        @*<input type="text" name="txtDepartmentCode" />*@
+                    </td>
+                </tr>
+                <tr>
+                    <th>Department Name : </th>
+                    <td>
+                        @*@Html.TextBox("DepartmentName")*@
+                        @Html.TextBoxFor(x => x.DepartmentName)
+                        @*<input type="text" name="txtDepartmentName" />*@
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Create" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+   
+</body>
+</html>
