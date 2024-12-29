@@ -5,6 +5,10 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee_MVCApp", "Employee_MVCApp\Employee_MVCApp.csproj", "{8F9FAFE9-1F62-4FFC-8384-5D0D508CA05A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee_MVCApp.DataAccess", "Employee_MVCApp.DataAccess\Employee_MVCApp.DataAccess.csproj", "{66639660-C767-4E2C-9ADE-AD8D26FA174A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee_MVCApp.Processing", "Employee_MVCApp.Processing\Employee_MVCApp.Processing.csproj", "{3799C9FA-AFA6-4639-A20F-290E4AA89665}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{8F9FAFE9-1F62-4FFC-8384-5D0D508CA05A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F9FAFE9-1F62-4FFC-8384-5D0D508CA05A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F9FAFE9-1F62-4FFC-8384-5D0D508CA05A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66639660-C767-4E2C-9ADE-AD8D26FA174A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66639660-C767-4E2C-9ADE-AD8D26FA174A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66639660-C767-4E2C-9ADE-AD8D26FA174A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66639660-C767-4E2C-9ADE-AD8D26FA174A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3799C9FA-AFA6-4639-A20F-290E4AA89665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3799C9FA-AFA6-4639-A20F-290E4AA89665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3799C9FA-AFA6-4639-A20F-290E4AA89665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3799C9FA-AFA6-4639-A20F-290E4AA89665}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Employee_MVCApp.Models.DepartmentModel>
+﻿@model Employee_MVCApp.Models.EmployeeDepartmentWrapper
 @{
     Layout = null;
 }
@@ -11,7 +11,7 @@
     <title>Index</title>
 </head>
 <body>
-    <div> 
+    <div>
         <table>
             <thead>
                 <tr>
@@ -20,13 +20,69 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.departments)
                 {
                     <tr>
                         <td>@item.DepartmentCode</td>
                         <td>@item.DepartmentName</td>
                     </tr>
                 }
+
+                @*@foreach (var item in ViewBag.Departments)
+                    {
+                        <tr>
+                            <td>@item.DepartmentCode</td>
+                            <td>@item.DepartmentName</td>
+                        </tr>
+                    }*@
+
+                @*@foreach (var item in  (List<Employee_MVCApp.Models.DepartmentModel>)ViewData["Departments"])
+                    {
+                        <tr>
+                            <td>@item.DepartmentCode</td>
+                            <td>@item.DepartmentName</td>
+                        </tr>
+                    }*@
+            </tbody>
+        </table>
+    </div>
+    <hr />
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Emp Code</th>
+                    <th>Emp Name</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.employees)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Gender</td>
+                        </tr>
+                    }
+
+                @*@foreach (var item in ViewBag.Employees)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Gender</td>
+                        </tr>
+                    }*@
+
+                @*@foreach (var item in (List<Employee_MVCApp.Models.EmployeeModel>)ViewData["Employees"])
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Gender</td>
+                    </tr>
+                }*@
             </tbody>
         </table>
     </div>
