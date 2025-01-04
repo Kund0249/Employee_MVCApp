@@ -1,4 +1,4 @@
-﻿@model Employee_MVCApp.Models.EmployeeDepartmentWrapper
+﻿@model IEnumerable<Employee_MVCApp.Models.DepartmentModel>
 @{
     Layout = null;
 }
@@ -8,83 +8,69 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
     <title>Index</title>
 </head>
 <body>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Department Code</th>
-                    <th>Department Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.departments)
+    <div class="container-fluid">
+        <div class="row mt-5 mb-3">
+            <div class="col-6 offset-3">
+                <div class="row mb-3">
+                    <div class="d-flex">
+                        <div class="col-5 ms-auto">
+                            @Html.ActionLink("Create New", "Create", "Department", null, new { @class = "btn btn-primary" })
+                            @*<a href="Create" class="btn btn-primary ms-auto">Create New</a>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Department Code</th>
+                                <th>Department Name</th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.DepartmentCode</td>
+                                    <td>@item.DepartmentName</td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                            @Html.ActionLink("Edit", "Edit", "Department", new { id = item.Id }, new { @class = "btn btn-sm btn-primary" })
+
+                                            @*<button type="button" class="btn btn-sm btn-primary">Edit</button>*@
+                                            @*<button type="button" class="btn btn-sm btn-danger">Remove</button>*@
+                                            @using (Html.BeginForm("Delete", "Department", new { id = item.Id }, FormMethod.Post))
+                                            {
+                                                <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                @if (TempData["Message"] != null)
                 {
-                    <tr>
-                        <td>@item.DepartmentCode</td>
-                        <td>@item.DepartmentName</td>
-                    </tr>
+                    <div class="row mt-5">
+                        <div class="alert alert-primary" role="alert">
+                            @TempData["Message"]
+                        </div>
+                    </div>
                 }
 
-                @*@foreach (var item in ViewBag.Departments)
-                    {
-                        <tr>
-                            <td>@item.DepartmentCode</td>
-                            <td>@item.DepartmentName</td>
-                        </tr>
-                    }*@
 
-                @*@foreach (var item in  (List<Employee_MVCApp.Models.DepartmentModel>)ViewData["Departments"])
-                    {
-                        <tr>
-                            <td>@item.DepartmentCode</td>
-                            <td>@item.DepartmentName</td>
-                        </tr>
-                    }*@
-            </tbody>
-        </table>
-    </div>
-    <hr />
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Emp Code</th>
-                    <th>Emp Name</th>
-                    <th>Gender</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.employees)
-                    {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Name</td>
-                            <td>@item.Gender</td>
-                        </tr>
-                    }
+            </div>
+        </div>
 
-                @*@foreach (var item in ViewBag.Employees)
-                    {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Name</td>
-                            <td>@item.Gender</td>
-                        </tr>
-                    }*@
-
-                @*@foreach (var item in (List<Employee_MVCApp.Models.EmployeeModel>)ViewData["Employees"])
-                {
-                    <tr>
-                        <td>@item.Id</td>
-                        <td>@item.Name</td>
-                        <td>@item.Gender</td>
-                    </tr>
-                }*@
-            </tbody>
-        </table>
     </div>
 </body>
 </html>

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Employee_MVCApp.DataAccess.Repository;
 using Employee_MVCApp.DataAccess.Entity;
+using System.Runtime.Remoting.Contexts;
 
 namespace Employee_MVCApp.Processing
 {
@@ -27,6 +28,56 @@ namespace Employee_MVCApp.Processing
             {
 
                 throw;
+            }
+        }
+
+        public List<Department> GetDepartments
+        {
+            get
+            {
+                try
+                {
+                   return departmentRepository.GetDepartments;
+                }
+                catch (Exception ex)
+                {
+                    return new List<Department>();
+                }
+            }
+        }
+
+        public Department GetDepartment(int id) {
+            try
+            {
+                return departmentRepository.GetDepartment(id);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public void Update(Department department)
+        {
+            try
+            {
+                departmentRepository.Update(department);
+            }
+            catch (Exception)
+            {
+               
+            }
+        }
+
+        public void Remove(int DepartmentId)
+        {
+            try
+            {
+                departmentRepository.Remove(DepartmentId);
+            }
+            catch (Exception)
+            {
+
             }
         }
     }

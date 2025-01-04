@@ -5,41 +5,52 @@
 
 <!DOCTYPE html>
 
-
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
     <title>Create</title>
 </head>
 <body>
-    <form method="post">
-        <div>
-            <table>
-                <tr>
-                    <th>Department Code : </th>
-                    <td>
-                        @*@Html.TextBox("DepartmentCode")*@
-                        @Html.TextBoxFor(x => x.DepartmentCode)
-                        @*<input type="text" name="txtDepartmentCode" />*@
-                    </td>
-                </tr>
-                <tr>
-                    <th>Department Name : </th>
-                    <td>
-                        @*@Html.TextBox("DepartmentName")*@
-                        @Html.TextBoxFor(x => x.DepartmentName)
-                        @*<input type="text" name="txtDepartmentName" />*@
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" value="Create" />
-                    </td>
-                </tr>
-            </table>
+    <div class="container-fluid">
+        <div class="row mt-5">
+            <div class="col-6 offset-3">
+                <div class="row mb-3">
+                    <div class="d-flex">
+                        <div class="col-5 ms-auto">
+                            @Html.ActionLink("Back to List", "Index", "Department", null,new { @class = "btn btn-primary ms-auto" })
+
+                            @*<a href="Index" class="btn btn-primary ms-auto">Back to List</a>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <form method="post" action="Create">
+                        <table class="table">
+                            <tr>
+                                <th>Department Code</th>
+                                <td>
+                                    @Html.TextBoxFor(x => x.DepartmentCode, new { @class = "form-control" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Department Name</th>
+                                <td>
+                                    @Html.TextBoxFor(x => x.DepartmentName, new { @class = "form-control" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                  
+                </div>
+
+            </div>
         </div>
-    </form>
-   
+    </div>
 </body>
 </html>

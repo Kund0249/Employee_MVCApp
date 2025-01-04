@@ -1,0 +1,73 @@
+﻿@model Employee_MVCApp.Models.DepartmentModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <title>Edit</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row mt-5">
+            <div class="col-6 offset-3">
+                <div class="row mb-3">
+                    <div class="d-flex">
+                        <div class="col-5 ms-auto">
+                            @Html.ActionLink("Back to List", "Index", "Department", null, new { @class = "btn btn-primary ms-auto" })
+
+                            @*<a href="Index" class="btn btn-primary ms-auto">Back to List</a>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @if (Model != null)
+                    {
+                        <form method="post" action="Create">
+                            @Html.HiddenFor(x => x.Id)
+                            <table class="table">
+                                <tr>
+                                    <th>Department Code</th>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.DepartmentCode, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Department Name</th>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.DepartmentName, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <input type="submit" value="Save" class="btn btn-warning" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+
+                    }
+                    else
+                    {
+                        <div class="card">
+                            <div class="card-header">
+                                <label>Not Found</label>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-danger text-center">
+                                    The resource you are looking not found!
+                                </p>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

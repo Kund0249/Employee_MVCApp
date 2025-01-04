@@ -8,6 +8,7 @@ namespace Employee_MVCApp.Models
 {
     public class DepartmentModel
     {
+        public int Id { get; set; }
         public string DepartmentCode { get; set; }
         public string DepartmentName { get; set; }
 
@@ -16,6 +17,7 @@ namespace Employee_MVCApp.Models
         {
             return new Department()
             {
+                SystemNumber = model.Id,
                 DepartmentCode = model.DepartmentCode,
                 DepartmentName = model.DepartmentName,
                 Description = ""
@@ -26,6 +28,7 @@ namespace Employee_MVCApp.Models
         {
             return new DepartmentModel()
             {
+                Id = model.SystemNumber,
                 DepartmentCode = model.DepartmentCode,
                 DepartmentName = model.DepartmentName
             };

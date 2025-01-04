@@ -20,5 +20,41 @@ namespace Employee_MVCApp.DataAccess.Repository
             context.Departments.Add(department);
             context.SaveChanges();
         }
+
+        public List<Department> GetDepartments
+        {
+            get
+            {
+                return context.Departments.ToList();
+            }
+        }
+
+        public Department GetDepartment(int DepartmentId)
+        {
+            return context.Departments.SingleOrDefault(x => x.SystemNumber == DepartmentId);
+        }
+
+        public void Update(Department department)
+        {
+            var Department = context.Departments.SingleOrDefault(x => x.SystemNumber == department.SystemNumber);
+            if (Department != null)
+            {
+                Department.DepartmentName = department.DepartmentName;
+                Department.DepartmentCode = department.DepartmentCode;
+
+                context.SaveChanges();
+            }
+        }
+
+        public void Remove(int DepartmentId)
+        {
+            var department =  context.Departments.SingleOrDefault(x => x.SystemNumber == DepartmentId);
+            if(department != null)
+            {
+                context.Departments.Remove(department);
+                context.SaveChanges();
+            }
+        }
+
     }
 }
