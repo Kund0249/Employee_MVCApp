@@ -16,5 +16,7 @@ namespace Employee_MVCApp.DataAccess.Repository
         }
 
         public DbSet<Department> Departments { get; set; }
+
+        public DbSet<FileUpload> FileUploads { get; set; }
     }
 }

@@ -1,0 +1,31 @@
+﻿@model Employee_MVCApp.Models.FileUploadModel
+@*@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}*@
+
+    
+    <div class="container-fluid">
+        <div class="row mt-5 mb-5">
+            <div class="col-6 offset-3">
+                @using (Html.BeginForm("Create", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <table class="table">
+                        <tr>
+                            <th>Content Name</th>
+                            <td>@Html.TextBoxFor(x => x.Content, new { @class = "form-control" })</td>
+                        </tr>
+                        <tr>
+                            <th>Select File</th>
+                            <td>@Html.TextBoxFor(x => x.File, new { type = "file", @class = "form-control" })</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" class="btn btn-warning">Upload</button>
+                            </td>
+                        </tr>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+
