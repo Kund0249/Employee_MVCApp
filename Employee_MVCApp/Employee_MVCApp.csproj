@@ -110,6 +110,7 @@
     <Compile Include="Models\EmployeeDepartmentWrapper.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\FileUploadModel.cs" />
+    <Compile Include="Models\PagerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DepartmentRepository.cs" />
   </ItemGroup>

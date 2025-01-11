@@ -15,6 +15,12 @@ namespace Employee_MVCApp.DataAccess.Repository
             
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+           
+            base.OnModelCreating(modelBuilder);
+        }
+
         public DbSet<Department> Departments { get; set; }
 
         public DbSet<FileUpload> FileUploads { get; set; }

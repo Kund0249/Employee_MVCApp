@@ -19,12 +19,18 @@
                                 <th>Department Code</th>
                                 <td>
                                     @Html.TextBoxFor(x => x.DepartmentCode, new { @class = "form-control" })
+                                  <span class="text-danger">
+                                      @Html.ValidationMessageFor(x => x.DepartmentCode)
+                                  </span>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Department Name</th>
                                 <td>
                                     @Html.TextBoxFor(x => x.DepartmentName, new { @class = "form-control" })
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(x => x.DepartmentName)
+                                    </span>
                                 </td>
                             </tr>
                             <tr>

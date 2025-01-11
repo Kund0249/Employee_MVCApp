@@ -18,28 +18,35 @@ namespace Employee_MVCApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int PageNo = 1)
         {
-            //List<Department> departments = processor.GetDepartments;
-            //List<DepartmentModel> models = new List<DepartmentModel>();
-
-            //foreach (Department item in processor.GetDepartments)
-            //{
-            //    models.Add(DepartmentModel.Convert(item));
-            //}
-
-            //List<DepartmentModel> models = (from department in processor.GetDepartments
-            //                                select new DepartmentModel()
-            //                                {
-            //                                    DepartmentCode = department.DepartmentCode,
-            //                                    DepartmentName = department.DepartmentName,
-            //                                }).ToList();
-
-            List<DepartmentModel> models = (from department in processor.GetDepartments
+            int PageSize = 3;
+            
+            List<DepartmentModel> models = (from department in processor.GetDepartments(PageNo, PageSize,out int TotalCount)
                                             select DepartmentModel.Convert(department))
                                             .ToList();
 
-            return View(models);
+            
+
+            PagerModel pager = new PagerModel();
+            pager.TotalCount = TotalCount;
+            pager.PageSize = PageSize;
+            pager.TotalPage = TotalCount / PageSize;
+            pager.LastPage = TotalCount / PageSize;
+            pager.CurrentPage = PageNo;
+
+            if(PageNo > pager.LastPage)
+            {
+                return RedirectToAction(nameof(Index), new { PageNo = 1 });
+            }
+
+            DepartmentWrapper wrapper = new DepartmentWrapper()
+            {
+                Departments = models,
+                Pager = pager
+            };
+
+            return View(wrapper);
         }
 
         [HttpGet]
@@ -51,9 +58,14 @@ namespace Employee_MVCApp.Controllers
         [HttpPost]
         public ActionResult Create(DepartmentModel model)
         {
-            processor.Add(DepartmentModel.Convert(model));
-            TempData["Message"] = $"New Department with Code - {model.DepartmentCode}, created successfully";
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                processor.Add(DepartmentModel.Convert(model));
+                TempData["Message"] = $"New Department with Code - {model.DepartmentCode}, created successfully";
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
+           
         }
 
         [HttpGet]

@@ -31,22 +31,23 @@ namespace Employee_MVCApp.Processing
             }
         }
 
-        public List<Department> GetDepartments
+        public List<Department> GetDepartments(int PageNo,int PageSize,out int TotalCount)
         {
-            get
+            try
             {
-                try
-                {
-                   return departmentRepository.GetDepartments;
-                }
-                catch (Exception ex)
-                {
-                    return new List<Department>();
-                }
+                return departmentRepository.GetDepartments(PageNo, PageSize,out TotalCount);
+                
             }
+            catch (Exception ex)
+            {
+                TotalCount = 0;
+                return new List<Department>();
+            }
+
         }
 
-        public Department GetDepartment(int id) {
+        public Department GetDepartment(int id)
+        {
             try
             {
                 return departmentRepository.GetDepartment(id);
@@ -65,7 +66,7 @@ namespace Employee_MVCApp.Processing
             }
             catch (Exception)
             {
-               
+
             }
         }
 

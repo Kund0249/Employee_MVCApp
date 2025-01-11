@@ -21,12 +21,11 @@ namespace Employee_MVCApp.DataAccess.Repository
             context.SaveChanges();
         }
 
-        public List<Department> GetDepartments
+        public List<Department> GetDepartments(int PageNo,int Pagesize,out int TotalCont)
         {
-            get
-            {
-                return context.Departments.ToList();
-            }
+            TotalCont = context.Departments.ToList().Count;
+            return context.Departments.OrderBy(x => x.SystemNumber).Skip((PageNo-1)* Pagesize).Take(Pagesize).ToList();
+
         }
 
         public Department GetDepartment(int DepartmentId)
@@ -48,8 +47,8 @@ namespace Employee_MVCApp.DataAccess.Repository
 
         public void Remove(int DepartmentId)
         {
-            var department =  context.Departments.SingleOrDefault(x => x.SystemNumber == DepartmentId);
-            if(department != null)
+            var department = context.Departments.SingleOrDefault(x => x.SystemNumber == DepartmentId);
+            if (department != null)
             {
                 context.Departments.Remove(department);
                 context.SaveChanges();
