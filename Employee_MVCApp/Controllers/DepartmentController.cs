@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Employee_MVCApp.Controllers
 {
-    public class DepartmentController : Controller
+    public class DepartmentController : BaseController
     {
         private readonly DepartmentProcessor processor;
         public DepartmentController()
@@ -20,6 +20,7 @@ namespace Employee_MVCApp.Controllers
         [HttpGet]
         public ActionResult Index(int PageNo = 1)
         {
+          
             int PageSize = 3;
             
             List<DepartmentModel> models = (from department in processor.GetDepartments(PageNo, PageSize,out int TotalCount)
@@ -31,8 +32,8 @@ namespace Employee_MVCApp.Controllers
             PagerModel pager = new PagerModel();
             pager.TotalCount = TotalCount;
             pager.PageSize = PageSize;
-            pager.TotalPage = TotalCount / PageSize;
-            pager.LastPage = TotalCount / PageSize;
+            pager.TotalPage =  (int)Math.Ceiling((decimal)TotalCount / PageSize);
+            pager.LastPage = (int)Math.Ceiling((decimal)TotalCount / PageSize);
             pager.CurrentPage = PageNo;
 
             if(PageNo > pager.LastPage)
@@ -61,7 +62,8 @@ namespace Employee_MVCApp.Controllers
             if (ModelState.IsValid)
             {
                 processor.Add(DepartmentModel.Convert(model));
-                TempData["Message"] = $"New Department with Code - {model.DepartmentCode}, created successfully";
+                //TempData["Message"] = $"New Department with Code - {model.DepartmentCode}, created successfully";
+                ShowMessage($"New Department with Code - {model.DepartmentCode}, created successfully", "Record Created", MessageType.success);
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
@@ -76,6 +78,8 @@ namespace Employee_MVCApp.Controllers
             {
                 return View(DepartmentModel.Convert(department));
             }
+            ShowMessage($"Record not found with id {id}", "Not Found", MessageType.error);
+
             return View();
         }
 
@@ -86,7 +90,8 @@ namespace Employee_MVCApp.Controllers
             if (department != null)
             {
                 processor.Update(DepartmentModel.Convert(model));
-                TempData["Message"] = $"Department {department.DepartmentCode}, updated successfully";
+                //TempData["Message"] = $"Department {department.DepartmentCode}, updated successfully";
+                ShowMessage($"Department {department.DepartmentCode}, updated successfully", "Record updated", MessageType.success);
                 return RedirectToAction(nameof(Index));
             }
             return View();
@@ -96,7 +101,9 @@ namespace Employee_MVCApp.Controllers
         public ActionResult Delete(int id)
         {
             processor.Remove(id);
-            TempData["Message"] = $"Department with id - {id}, removed successfully";
+            //TempData["Message"] = $"Department with id - {id}, removed successfully";
+            ShowMessage($"Department with id - {id}, removed successfully", "Record deleted", MessageType.success);
+
             return RedirectToAction(nameof(Index));
         }
     }

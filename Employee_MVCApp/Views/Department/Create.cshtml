@@ -1,49 +1,58 @@
 ﻿@model Employee_MVCApp.Models.DepartmentModel
 
-    <div class="container-fluid">
-        <div class="row mt-5">
-            <div class="col-6 offset-3">
-                <div class="row mb-3">
-                    <div class="d-flex">
-                        <div class="col-5 ms-auto">
-                            @Html.ActionLink("Back to List", "Index", "Department", null,new { @class = "btn btn-primary ms-auto" })
 
-                            @*<a href="Index" class="btn btn-primary ms-auto">Back to List</a>*@
-                        </div>
+@section ValidationScript
+    {
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            <div class="row mb-3">
+                <div class="d-flex">
+                    <div class="col-5 ms-auto">
+                        @Html.ActionLink("Back to List", "Index", "Department", null, new { @class = "btn btn-primary ms-auto" })
+
+                        @*<a href="Index" class="btn btn-primary ms-auto">Back to List</a>*@
                     </div>
                 </div>
-                <div class="row">
-                    <form method="post" action="Create">
-                        <table class="table">
-                            <tr>
-                                <th>Department Code</th>
-                                <td>
-                                    @Html.TextBoxFor(x => x.DepartmentCode, new { @class = "form-control" })
-                                  <span class="text-danger">
-                                      @Html.ValidationMessageFor(x => x.DepartmentCode)
-                                  </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Department Name</th>
-                                <td>
-                                    @Html.TextBoxFor(x => x.DepartmentName, new { @class = "form-control" })
-                                    <span class="text-danger">
-                                        @Html.ValidationMessageFor(x => x.DepartmentName)
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">
-                                    <input type="submit" value="Create" class="btn btn-primary" />
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                  
-                </div>
+            </div>
+            <div class="row">
+                <form method="post" action="Create">
+                    <table class="table">
+                        <tr>
+                            <th>Department Code</th>
+                            <td>
+                                @Html.TextBoxFor(x => x.DepartmentCode, new { @class = "form-control" })
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(x => x.DepartmentCode)
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Department Name</th>
+                            <td>
+                                @Html.TextBoxFor(x => x.DepartmentName, new { @class = "form-control" })
+                                <span class="text-danger">
+                                    @Html.ValidationMessageFor(x => x.DepartmentName)
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
 
             </div>
+
         </div>
     </div>
+</div>
 

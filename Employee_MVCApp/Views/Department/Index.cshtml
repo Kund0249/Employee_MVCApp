@@ -8,6 +8,7 @@
                 <div class="col-8">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">First</a></li>
                             <li class="page-item">
                                 @Html.ActionLink("<<", "Index", "Department", new { PageNo = 1 }, new { @class = "page-link" })
 
@@ -33,10 +34,10 @@
 
                             <li class="page-item">
                                 @Html.ActionLink(">>", "Index", "Department", new { PageNo = Model.Pager.LastPage }, new { @class = "page-link" })
-
-                                @*<a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>*@
+                            <li class="page-item"><a class="page-link" href="#">Last</a></li>
+                            @*<a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+        </a>*@
                             </li>
                         </ul>
                     </nav>
@@ -78,7 +79,9 @@
                                         @*<button type="button" class="btn btn-sm btn-danger">Remove</button>*@
                                         @using (Html.BeginForm("Delete", "Department", new { id = item.Id }, FormMethod.Post))
                                         {
-                                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                                            <button type="submit"
+                                                    onclick="return confirm('are you sure? want to delete this record permanently')"
+                                                    class="btn btn-sm btn-danger">Remove</button>
                                         }
                                     </div>
                                 </td>

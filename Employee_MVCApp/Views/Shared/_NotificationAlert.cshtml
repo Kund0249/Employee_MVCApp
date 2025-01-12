@@ -1,0 +1,7 @@
+﻿<script>
+      var msgcontent = @(Html.Raw(TempData["Content"] != null? TempData["Content"] : "undefined"));
+      if (msgcontent)
+      {
+          toastr[msgcontent.AlertType](msgcontent.Message, msgcontent.Title);
+      }
+</script>
