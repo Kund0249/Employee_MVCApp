@@ -13,6 +13,7 @@ namespace Employee_MVCApp
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            GlobalFilters.Filters.Add(new HandleErrorAttribute()); // Global Level
         }
     }
 }

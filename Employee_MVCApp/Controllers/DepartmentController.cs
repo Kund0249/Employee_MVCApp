@@ -4,11 +4,15 @@ using Employee_MVCApp.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
 namespace Employee_MVCApp.Controllers
 {
+    //[HandleError()] //Controller Level
+
+    [Authorize]
     public class DepartmentController : BaseController
     {
         private readonly DepartmentProcessor processor;
@@ -18,6 +22,8 @@ namespace Employee_MVCApp.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
+        [OutputCache(Duration =30)]
         public ActionResult Index(int PageNo = 1)
         {
           
@@ -36,7 +42,7 @@ namespace Employee_MVCApp.Controllers
             pager.LastPage = (int)Math.Ceiling((decimal)TotalCount / PageSize);
             pager.CurrentPage = PageNo;
 
-            if(PageNo > pager.LastPage)
+            if(PageNo > pager.LastPage && models.Count > 0)
             {
                 return RedirectToAction(nameof(Index), new { PageNo = 1 });
             }
@@ -51,12 +57,15 @@ namespace Employee_MVCApp.Controllers
         }
 
         [HttpGet]
+        //[Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        //[Authorize]
+        //[HandleError] //Action Level
         public ActionResult Create(DepartmentModel model)
         {
             if (ModelState.IsValid)
@@ -64,6 +73,8 @@ namespace Employee_MVCApp.Controllers
                 processor.Add(DepartmentModel.Convert(model));
                 //TempData["Message"] = $"New Department with Code - {model.DepartmentCode}, created successfully";
                 ShowMessage($"New Department with Code - {model.DepartmentCode}, created successfully", "Record Created", MessageType.success);
+                Thread.Sleep(5000);
+                throw new Exception("Throwing custom exception.");
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
