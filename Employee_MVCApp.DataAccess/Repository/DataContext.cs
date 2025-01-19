@@ -27,5 +27,7 @@ namespace Employee_MVCApp.DataAccess.Repository
         public DbSet<FileUpload> FileUploads { get; set; }
 
         public DbSet<UserEntity> user { get; set; }
+
+        public DbSet<Employee> employees { get; set; }
     }
 }

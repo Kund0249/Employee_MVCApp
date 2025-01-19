@@ -52,8 +52,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\Department.cs" />
+    <Compile Include="Entity\Employee.cs" />
     <Compile Include="Entity\FileUpload.cs" />
     <Compile Include="Entity\UserEntity.cs" />
+    <Compile Include="Migrations\202501190926037_IntialDataBaseCreation.cs" />
+    <Compile Include="Migrations\202501190926037_IntialDataBaseCreation.Designer.cs">
+      <DependentUpon>202501190926037_IntialDataBaseCreation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501190936467_CreatingNewTableForEmployee.cs" />
+    <Compile Include="Migrations\202501190936467_CreatingNewTableForEmployee.Designer.cs">
+      <DependentUpon>202501190936467_CreatingNewTableForEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501190941308_AddingMobNoPropertyInEmployeeModel.cs" />
+    <Compile Include="Migrations\202501190941308_AddingMobNoPropertyInEmployeeModel.Designer.cs">
+      <DependentUpon>202501190941308_AddingMobNoPropertyInEmployeeModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DataContext.cs" />
     <Compile Include="Repository\DepartmentRepository.cs" />
@@ -63,6 +77,17 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202501190926037_IntialDataBaseCreation.resx">
+      <DependentUpon>202501190926037_IntialDataBaseCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501190936467_CreatingNewTableForEmployee.resx">
+      <DependentUpon>202501190936467_CreatingNewTableForEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501190941308_AddingMobNoPropertyInEmployeeModel.resx">
+      <DependentUpon>202501190941308_AddingMobNoPropertyInEmployeeModel.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

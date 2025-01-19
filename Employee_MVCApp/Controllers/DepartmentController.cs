@@ -73,8 +73,8 @@ namespace Employee_MVCApp.Controllers
                 processor.Add(DepartmentModel.Convert(model));
                 //TempData["Message"] = $"New Department with Code - {model.DepartmentCode}, created successfully";
                 ShowMessage($"New Department with Code - {model.DepartmentCode}, created successfully", "Record Created", MessageType.success);
-                Thread.Sleep(5000);
-                throw new Exception("Throwing custom exception.");
+                //Thread.Sleep(5000);
+                //throw new Exception("Throwing custom exception.");
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
